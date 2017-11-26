@@ -1,0 +1,178 @@
+unit kegiatan;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, sqldb, odbcconn, db, FileUtil, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, StdCtrls, Buttons, DBGrids, ComCtrls, ExtDlgs, EditBtn;
+
+type
+
+  { TForm6 }
+
+  TForm6 = class(TForm)
+    BitBtn3: TBitBtn;
+    BitBtn7: TBitBtn;
+    BitBtn8: TBitBtn;
+    BitBtn9: TBitBtn;
+    Button1: TButton;
+    Image1: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    SpeedButton1: TSpeedButton;
+    TrackBar1: TTrackBar;
+    TrackBar2: TTrackBar;
+    TrackBar3: TTrackBar;
+    TrackBar4: TTrackBar;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure BitBtn7Click(Sender: TObject);
+    procedure BitBtn8Click(Sender: TObject);
+    procedure BitBtn9Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Panel1Click(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure TrackBar1Change(Sender: TObject);
+    procedure TrackBar2Change(Sender: TObject);
+    procedure TrackBar3Change(Sender: TObject);
+    procedure TrackBar4Change(Sender: TObject);
+
+
+
+
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form6: TForm6;
+
+implementation
+uses
+  running, admin, control, extend, video, main;
+{$R *.lfm}
+
+{ TForm6 }
+
+
+
+procedure TForm6.BitBtn5Click(Sender: TObject);
+begin
+  //CalendarDialog1.Execute;
+  //Edit4.Text:= DateToStr(CalendarDialog1.Date);
+end;
+
+procedure TForm6.BitBtn1Click(Sender: TObject);
+begin
+  Form5.Show;
+  Form6.hide;
+end;
+
+procedure TForm6.BitBtn2Click(Sender: TObject);
+begin
+  Form6.Show;
+
+end;
+
+procedure TForm6.BitBtn3Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm6.BitBtn6Click(Sender: TObject);
+begin
+  //if OpenDialog1.Execute then
+  //begin
+    //   Edit5.Text := OpenDialog1.Filename;
+       //ShowMessage(gmbr);
+  //end;
+end;
+
+procedure TForm6.BitBtn7Click(Sender: TObject);
+begin
+  Form7.Show;
+  Form6.hide;
+end;
+
+procedure TForm6.BitBtn8Click(Sender: TObject);
+begin
+  Form8.Show;
+  Form6.hide;
+end;
+
+procedure TForm6.BitBtn9Click(Sender: TObject);
+begin
+  Form9.Show;
+  Form6.Hide;
+end;
+
+procedure TForm6.Button1Click(Sender: TObject);
+begin
+  Form3.Show;
+  Form6.Hide;
+end;
+
+procedure TForm6.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TForm6.FormShow(Sender: TObject);
+begin
+  TrackBar1.Position:=Form1.Width;
+  TrackBar2.Position:=Form1.Height;
+  TrackBar3.Position:=Form1.Top;
+  TrackBar4.Position:=Form1.Left;
+end;
+
+procedure TForm6.Panel1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TForm6.SpeedButton1Click(Sender: TObject);
+begin
+  Form1.Show;
+end;
+
+procedure TForm6.TrackBar1Change(Sender: TObject);
+begin
+  Form1.Width:=TrackBar1.Position;
+end;
+
+procedure TForm6.TrackBar2Change(Sender: TObject);
+begin
+  Form1.Height:=TrackBar2.Position;
+end;
+
+procedure TForm6.TrackBar3Change(Sender: TObject);
+begin
+  Form1.Top:=TrackBar3.Position;
+end;
+
+procedure TForm6.TrackBar4Change(Sender: TObject);
+begin
+  Form1.Left:=TrackBar4.Position;
+end;
+
+
+
+
+
+end.
+

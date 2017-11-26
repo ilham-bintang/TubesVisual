@@ -1,0 +1,224 @@
+object Form5: TForm5
+  Left = 486
+  Height = 468
+  Top = 113
+  Width = 467
+  BorderStyle = bsSingle
+  Caption = 'Control Panel - Berita'
+  ClientHeight = 468
+  ClientWidth = 467
+  Color = 12615680
+  OnCreate = FormCreate
+  Position = poDesktopCenter
+  LCLVersion = '1.6.2.0'
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 176
+    Top = 280
+    Width = 448
+    AutoEdit = False
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource
+    Flat = True
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -15
+    Font.Name = 'Century Gothic'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    TabOrder = 0
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -15
+    TitleFont.Name = 'Century Gothic'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+  end
+  object Panel1: TPanel
+    Left = 8
+    Height = 224
+    Top = 56
+    Width = 448
+    BevelOuter = bvNone
+    ClientHeight = 224
+    ClientWidth = 448
+    Color = clSilver
+    ParentColor = False
+    TabOrder = 1
+    object Label3: TLabel
+      Left = 32
+      Height = 25
+      Top = 14
+      Width = 46
+      Caption = 'Judul'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -19
+      Font.Name = 'Bebas'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 32
+      Height = 25
+      Top = 80
+      Width = 18
+      Caption = 'Isi'
+      Font.CharSet = ANSI_CHARSET
+      Font.Height = -19
+      Font.Name = 'Bebas'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      ParentColor = False
+      ParentFont = False
+    end
+    object Edit2: TEdit
+      Left = 112
+      Height = 23
+      Top = 16
+      Width = 328
+      TabOrder = 0
+    end
+    object Memo1: TMemo
+      Left = 112
+      Height = 119
+      Top = 49
+      Width = 328
+      TabOrder = 1
+    end
+    object Button1: TButton
+      Left = 112
+      Height = 32
+      Top = 176
+      Width = 91
+      Caption = 'Insert'
+      Color = clHighlight
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -15
+      Font.Name = 'Bebas'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      OnClick = Button1Click
+      ParentFont = False
+      TabOrder = 2
+    end
+    object Button2: TButton
+      Left = 232
+      Height = 32
+      Top = 176
+      Width = 91
+      Caption = 'Update'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -15
+      Font.Name = 'Bebas'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      OnClick = Button2Click
+      ParentFont = False
+      TabOrder = 3
+    end
+    object Button3: TButton
+      Left = 349
+      Height = 32
+      Top = 176
+      Width = 91
+      Caption = 'Delete'
+      Font.CharSet = ANSI_CHARSET
+      Font.Color = clHotLight
+      Font.Height = -15
+      Font.Name = 'Bebas'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      OnClick = Button3Click
+      ParentFont = False
+      TabOrder = 4
+    end
+  end
+  object Label5: TLabel
+    Left = 176
+    Height = 37
+    Top = 8
+    Width = 93
+    Alignment = taCenter
+    Caption = 'BERITA'
+    Font.CharSet = ANSI_CHARSET
+    Font.Color = clHighlightText
+    Font.Height = -29
+    Font.Name = 'Trebuchet MS'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button4: TButton
+    Left = 0
+    Height = 41
+    Top = 0
+    Width = 59
+    Caption = 'Back'
+    Color = clSkyBlue
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -16
+    Font.Name = 'Bebas'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    OnClick = Button4Click
+    ParentFont = False
+    TabOrder = 2
+  end
+  object SQL: TSQLQuery
+    FieldDefs = <    
+      item
+        Name = 'kd_berita'
+        DataType = ftString
+        Precision = -1
+        Size = 8
+      end    
+      item
+        Name = 'judul'
+        DataType = ftMemo
+        Precision = -1
+      end    
+      item
+        Name = 'isi'
+        DataType = ftMemo
+        Precision = -1
+      end>
+    Database = ODBCConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'select * from berita'
+    )
+    Options = []
+    Params = <>
+    left = 232
+    top = 376
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Database = ODBCConnection1
+    Options = []
+    left = 264
+    top = 376
+  end
+  object DataSource: TDataSource
+    DataSet = SQL
+    left = 296
+    top = 376
+  end
+  object ODBCConnection1: TODBCConnection
+    Connected = False
+    LoginPrompt = False
+    DatabaseName = 'tubesvisual'
+    KeepConnection = False
+    Transaction = SQLTransaction1
+    UserName = 'root'
+    Options = []
+    left = 232
+    top = 416
+  end
+end

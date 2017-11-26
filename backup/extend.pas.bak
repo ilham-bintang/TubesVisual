@@ -1,0 +1,200 @@
+unit extend;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, sqldb, odbcconn, db, FileUtil, Forms, Controls, Graphics,
+  Dialogs, ExtCtrls, DBGrids, StdCtrls, ExtDlgs, Calendar, Buttons;
+
+type
+
+  { TForm1 }
+
+  TForm1 = class(TForm)
+    BitBtn1: TBitBtn;
+    Calendar1: TCalendar;
+    DataSource: TDataSource;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DataSource3: TDataSource;
+    DataSource4: TDataSource;
+    DBGrid2: TDBGrid;
+    Edit1: TEdit;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    ODBCConnection1: TODBCConnection;
+    ODBCConnection2: TODBCConnection;
+    ODBCConnection3: TODBCConnection;
+    ODBCConnection4: TODBCConnection;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    slider: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Memo1: TMemo;
+    Shape1: TShape;
+    SQL: TSQLQuery;
+    SQL1: TSQLQuery;
+    SQL2: TSQLQuery;
+    SQL3: TSQLQuery;
+    SQLConnector1: TSQLConnector;
+    SQLQuery1: TSQLQuery;
+    SQLTransaction1: TSQLTransaction;
+    SQLTransaction2: TSQLTransaction;
+    SQLTransaction3: TSQLTransaction;
+    SQLTransaction4: TSQLTransaction;
+    SQLTransaction5: TSQLTransaction;
+    Timer1: TTimer;
+    Timer2: TTimer;
+    Timer3: TTimer;
+    Timer4: TTimer;
+    Timer5: TTimer;
+
+
+
+    procedure BitBtn1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
+    procedure Timer4Timer(Sender: TObject);
+    procedure Timer5Timer(Sender: TObject);
+  private
+    { private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+uses
+  control;
+
+{$R *.lfm}
+
+{ TForm1 }
+
+
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+
+  Label1.Left:=Label1.Left-3;
+  if Label1.Left <1 then
+  Label1.Left:=1100;
+  //Timer1.Interval:=10;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+   Form5.Show;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  tulis:String;
+  speed:Integer;
+  dosen:String;
+  status:String;
+begin
+  SQL.Close;
+  SQL.SQL.Text:='select * from text where id=1';
+  SQL.Open;
+  tulis:=SQL.FieldByName('tulisan').AsString;
+  speed:=SQL.FieldByName('kec').AsInteger;
+
+   Label1.Caption:=tulis;
+   Timer1.Interval:=speed;
+
+  SQL.Close;
+  SQL.SQL.Text:='select * from dosen';
+  SQL.Open;
+  dosen:=SQL.FieldByName('nama_dosen').AsString;
+  status:=SQL.FieldByName('keterangan').AsString;
+
+   Label6.Caption:=dosen;
+   Label7.Caption:=status;
+   if status='hadir' then
+     Panel2.Color:=Red(200);
+end;
+
+procedure TForm1.BitBtn1Click(Sender: TObject);
+begin
+  form1.Close;
+end;
+
+procedure TForm1.Timer2Timer(Sender: TObject);
+  var
+  path:String;
+begin
+  SQLQuery1.Close;
+  SQLQuery1.SQL.Text:='select * from kegiatan order by rand() limit 0,1';
+  SQLQuery1.Open;
+  while not SQLQuery1.EOF do
+  begin
+    path:=SQLQuery1.FieldByName('picture').AsString;
+    SQLQuery1.Next;
+  end;
+  slider.Picture.LoadFromFile(path);
+end;
+
+procedure TForm1.Timer3Timer(Sender: TObject);
+var
+   ADate:TDateTime;
+   hari:array[1..7] of String;
+begin
+     hari[1]:='Minggu';
+     hari[2]:='Senin';
+     hari[3]:='Selasa';
+     hari[4]:='Rabu';
+     hari[5]:='Kamis';
+     hari[6]:='Jumat';
+     hari[7]:='Sabtu';
+
+     ADate:=date;
+     Label3.Caption:=hari[DayOfWeek(ADate)];
+     label4.Caption:=DateToStr(now);
+     label5.Caption:=TimeToStr(now);
+
+end;
+
+procedure TForm1.Timer4Timer(Sender: TObject);
+var
+   isi:String;
+   judul:String;
+begin
+    SQL1.Close;
+    SQL1.SQL.Text:='select * from berita order by rand() limit 0,1';
+    SQL1.Open;
+    while not SQL1.EOF do
+    begin
+         isi:=SQL1.FieldByName('isi').AsString;
+         judul:=SQL1.FieldByName('judul').AsString;
+         SQL1.Next;
+    end;
+    Edit1.Text:=judul;
+    Memo1.Text:=isi;
+end;
+
+procedure TForm1.Timer5Timer(Sender: TObject);
+begin
+  Panel2.Top:=Panel2.Top-2;
+  if Panel2.Top < Panel1.Top+3 then
+  Panel2.Top:=610;
+end;
+
+
+
+
+end.
